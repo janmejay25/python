@@ -5,9 +5,10 @@ while True:
         print("It's a tie!")
     elif player1 == "rock" and player2 == "scissor" or player1 == "paper" and player2 == "rock" or player1 == "scissor" and player2 == "paper":
             print("Player1 wins!")
-    elif player2 == "rock" and player1 == "scissor" or player2 == "paper" and player1 == "rock" or player2 == "scissor" and player1 == "paper":
-        print("Player2 wins!")
+    # elif player2 == "rock" and player1 == "scissor" or player2 == "paper" and player1 == "rock" or player2 == "scissor" and player1 == "paper":
     else:
+        print("Player2 wins!")
+    if player1 != "rock" or "paper" or "scissor" or player2 != "rock" or "paper" or "scissor":
         print("Invalid input! You have not entered rock, paper or scissor, try again.")
     play_again = input("Do you want to play again? (yes/no): ")
     if play_again.lower() == "no":
