@@ -4,9 +4,12 @@ def printboard():
         print(i+1, end=" ")
         for j in range(3):
             print(board[i][j], end=" ")
+        # This print() is used to print a newline character.
         print()
 def checkwin():
     for i in range(3):
+            #The reason the condition checks only board[i][0] != " " is because if board[i][0] is not empty and all three cells in the row are equal (board[i][0] == board[i][1] == board[i][2]), then it is guaranteed that board[i][1] and board[i][2] are also not empty.
+
         if board[i][0] == board[i][1] == board[i][2] and board[i][0] != " ":
             return True
         if board[0][i] == board[1][i] == board[2][i] and board[0][i] != " ":
