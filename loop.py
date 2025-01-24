@@ -2,6 +2,7 @@
 for i in range(5):
     print(i)
 # Output: 0 1 2 3 4
+# 7.9. Range with Start and Step
 for i in range (2,9):
     print(i)
 # output: 2 3 4 5 6 7 8
@@ -52,8 +53,8 @@ for fruit in fruits:
 # 7.7. Enumerate
 items = ["a", "b", "c"]
 for index, item in enumerate(items):
-    print(f"Index {index}: {item}")
-# output: Index 0: a Index 1: b Index 2: c
+    print(f" {index}: {item}")
+# output: 0: a 1: b 2: c
 
 # 6.1. Looping Over Multiple Lists
 list1 = [1, 2]
@@ -102,18 +103,20 @@ for item in my_set:
 
 # 5. Iterating Over a Dictionary
 # Keys:
-my_dict = {"name": "Alice", "age": 25}
+my_dict = {"name": "Ali", "age": 25}
 for key in my_dict:
     print(key)
 # Output: name age
+
 # Values:
 for value in my_dict.values():
   print(value)
-# output: Alice 25
+# output: Ali 25
+
 # Key-Value Pairs:
 for key, value in my_dict.items():
    print(f"{key}: {value}")
-# output: name: Alice age: 25
+# output: name: Ali age: 25
 
 # 6.3. Looping Over a List of Dictionaries (Nested Dictionaries)
 people = [{"name": "Alice", "age": 25}, {"name": "Bob", "age": 30}]
