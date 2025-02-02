@@ -1,9 +1,14 @@
 vowel = "aeiouAEIOU"
-sum = 0
-text=input("Enter the text: ")
+text = input("Enter the text: ")
+
+vowel_str = ""  # New string to store vowels
+count = 0  # Counter for vowels
+
 for char in text:
     if char in vowel:
-        print(char)
-        sum+=1
-print(sum)
+        vowel_str += char  # Append vowel to string
+        count += 1
+
+print("Vowels:", vowel_str)
+print("Count:", count)
 
