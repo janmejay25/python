@@ -36,7 +36,5 @@ for i in range(len(li)):
         if li[i] == li[j] and li[i] not in dup_li:
             dup_li.append(li[i])
 print("duplicates are ",dup_li)
-
-  
 # print("duplicates are",dup_li)
 # output: [1, 2, 3, 4, 6, 8, 7, 5, 55, 87, 23, 234]

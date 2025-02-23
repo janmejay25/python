@@ -17,7 +17,10 @@ male_1 = male()
 # inherited from class human
 male_1.speak()
 # talk method is used in class human and male
-# that is called method overloading
+# that is called method overRiding
 # but it`ll give the output using class male
 # (class male >> class human) beacuse it has method in OG class
 male_1.talk()
+
+# dance method is in male class
+male_1.dance()
