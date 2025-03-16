@@ -2,6 +2,8 @@ def add(a,b):
     return a+b
 def subtract():
     a = int(input("enter value of A "))
+
+    
     b = int(input("enter value of B "))
     return a - b
 
