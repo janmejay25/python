@@ -20,3 +20,7 @@ a = True
 b = False
 print (a & b) # False
 print (a | b) # True
+print (2 ^ 3) # 1
+print (~a) # False
+print(a>>b) # True
+print(2<<2) # 8
