@@ -1,32 +1,30 @@
 import tkinter as tk
 
-# Function to update the label with selected color
-def update_color():
-    selected = color_var.get()
-    label_display.config(text=f"Selected Color: {selected}", fg=selected.lower())
+def show_selected():
+    selected_index = listbox.curselection()
+    if selected_index:
+        selected_item = listbox.get(selected_index)
+        label_result.config(text=f"Selected: {selected_item}")
 
 # Create main window
 root = tk.Tk()
-root.title("Color Selector")
-root.geometry("300x200")
+root.title("Listbox Example")
+root.geometry("300x250")
 
-# Create StringVar to hold selected color
-color_var = tk.StringVar()
-color_var.set("Red")  # Default selection
+# Create a listbox
+listbox = tk.Listbox(root, height=6, selectmode=tk.SINGLE)
+colors = ["Red", "Green", "Blue", "Yellow", "Purple", "Orange"]
+for color in colors:
+    listbox.insert(tk.END, color)
 
-# Create Radiobuttons
-radio_red = tk.Radiobutton(root, text="Red", variable=color_var, value="Red", command=update_color)
-radio_green = tk.Radiobutton(root, text="Green", variable=color_var, value="Green", command=update_color)
-radio_blue = tk.Radiobutton(root, text="Blue", variable=color_var, value="Blue", command=update_color)
+listbox.pack(pady=10)
 
-# Pack Radiobuttons
-radio_red.pack(anchor='w', padx=20, pady=5)
-radio_green.pack(anchor='w', padx=20, pady=5)
-radio_blue.pack(anchor='w', padx=20, pady=5)
+# Button to get selected item
+btn_show = tk.Button(root, text="Show Selected", command=show_selected)
+btn_show.pack()
 
-# Label to show selected color
-label_display = tk.Label(root, text="Selected Color: Red", fg="red", font=("Arial", 12))
-label_display.pack(pady=20)
+# Label to display selected item
+label_result = tk.Label(root, text="Selected: None")
+label_result.pack(pady=10)
 
-# Run the application
 root.mainloop()
