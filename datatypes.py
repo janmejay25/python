@@ -14,3 +14,9 @@ print (a and b) # 4
 print (a or b) # 10
 print (not b) # False
 
+# bitwise operators
+print("bitwise operators")
+a = True
+b = False
+print (a & b) # False
+print (a | b) # True
