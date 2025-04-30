@@ -21,6 +21,25 @@ b = False
 print (a & b) # False
 print (a | b) # True
 print (2 ^ 3) # 1
-print (~a) # False
+print (~1) # False
 print(a>>b) # True
 print(2<<2) # 8
+
+
+j= 20
+j= 10
+print("hello world",j)
+
+
+for i in range(1, 5):
+    for j in range(i):
+        print(i, end=" ")
+    print()
+
+
+count = 1
+while count <= 10:
+    count += 1
+    if count == 6:
+        break 
+    print(count)
