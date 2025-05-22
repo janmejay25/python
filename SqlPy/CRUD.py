@@ -40,7 +40,6 @@ print("New student inserted successfully!")
 # 3️⃣ READ DATA (Retrieve)
 cursor.execute("SELECT * FROM student")
 print("\nStudent Records:")
-
 for row in cursor.fetchall():
     print(row)
 
