@@ -37,6 +37,7 @@ cursor.execute(insert_query, student2)
 conn.commit()
 print("New student inserted successfully!")
 
+
 # 3️⃣ READ DATA (Retrieve)
 cursor.execute("SELECT * FROM student")
 print("\nStudent Records:")
