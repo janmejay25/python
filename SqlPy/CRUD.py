@@ -24,6 +24,7 @@ create_table_query = """
 cursor.execute(create_table_query)
 print("Table 'student' created successfully!")
 
+
 # 2️⃣ INSERT DATA (Using %s format)
 insert_query = """
     INSERT INTO student (enrollment_no, name, course, birthdate, contact_no)
