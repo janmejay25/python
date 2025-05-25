@@ -23,7 +23,6 @@ else:
     print("Database creation failed.")
 
 
-
 # Close connection
 cursor.close()
 conn.close()
