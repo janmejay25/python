@@ -10,6 +10,7 @@ conn = mysql.connector.connect(
 cursor = conn.cursor()
 
 # Create 'college' database
+ 
 cursor.execute("CREATE DATABASE college")
 
 # Check if 'college' database exists
