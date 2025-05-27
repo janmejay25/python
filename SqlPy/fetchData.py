@@ -41,24 +41,15 @@ print("New jatak inserted successfully!")
 
 
 # 3️⃣ READ DATA (Retrieve)
-# cursor.execute("SELECT * FROM Birthdetails")
-# print("\nStudent Records:")
-# for row in cursor.fetchall():
-#     print(row)
+cursor.execute("SELECT * FROM Birthdetails Where gender = 'M'")
+print("\nStudent Records:")
+for row in cursor.fetchall():
+    print(row)
 
-try:
+
     # Example DB operation (fetch all records)
-    cursor.execute("SELECT * FROM Birthdetails")
-    print("\nStudent Records:")
-    for row in cursor.fetchall():
-        print(row)
-except mysql.connector.Error as err:
-    print(f"Error: {err}")
-finally:
-    cursor.close()
-    conn.close()
 
 
 # Close connection
-# cursor.close()
-# conn.close()
+cursor.close()
+conn.close()
