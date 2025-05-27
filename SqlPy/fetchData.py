@@ -47,8 +47,6 @@ for row in cursor.fetchall():
     print(row)
 
 
-    # Example DB operation (fetch all records)
-
 
 # Close connection
 cursor.close()
