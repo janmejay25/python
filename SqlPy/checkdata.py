@@ -12,11 +12,7 @@ cursor = conn.cursor()
 attribute=input("enter the attribute to find: ")
 value=input("enter the value to find: ")
 
-query = """
-    SELECT * FROM Birthdetails WHERE"""
-attribute
-"""="""
-value
+query = f"SELECT * FROM Birthdetails WHERE {attribute} = {value!r}"
 # 3️⃣ READ DATA (Retrieve)
 cursor.execute(query)
 print("\nStudent Records:")
