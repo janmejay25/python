@@ -17,8 +17,10 @@ value = input("Enter the value to find: ")
 
    
 
-query = f"SELECT * FROM Birthdetails WHERE {attribute} = %s"
-cursor.execute(query, (value,))
+query1 = f"SELECT * FROM Birthdetails WHERE {attribute}"
+query2 = f"= '{value}'"
+query = query1 + query2
+cursor.execute(query)
 
 print("\nStudent Records:")
 rows = cursor.fetchall()
