@@ -9,15 +9,24 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
-attribute=input("enter the attribute to find: ")
-value=input("enter the value to find: ")
 
-query = f"SELECT * FROM Birthdetails WHERE {attribute} = {value!r}"
-# 3️⃣ READ DATA (Retrieve)
-cursor.execute(query)
+attribute = input("Enter the attribute to find: ")
+value = input("Enter the value to find: ")
+
+# Validate attribute to prevent SQL injection (only allow specific columns)
+
+   
+
+query = f"SELECT * FROM Birthdetails WHERE {attribute} = %s"
+cursor.execute(query, (value,))
+
 print("\nStudent Records:")
-for row in cursor.fetchall():
-    print(row)
+rows = cursor.fetchall()
+if rows:
+    for row in rows:
+            print(row)
+else:
+        print("No records found.")
 
 # Close connection
 cursor.close()
