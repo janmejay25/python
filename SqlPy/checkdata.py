@@ -56,6 +56,27 @@ def read_data():
     else:
         print("No records found.")
 
+
+while True:
+    print("\nMenu:")
+    print("1. Insert Data")
+    print("2. Delete Data")
+    print("3. Read Data")
+    print("4. Exit")
+
+    choice = input("Enter your choice (1-4): ")
+
+    if choice == '1':
+        insert_data()
+    elif choice == '2':
+        delete_data()
+    elif choice == '3':
+        read_data()
+    elif choice == '4':
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice, please try again.")
 # Close connection
 cursor.close()
 conn.close()
