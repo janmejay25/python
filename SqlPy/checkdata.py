@@ -23,7 +23,16 @@ insert_query = """
     VALUES (%s, %s, %s, %s, %s, %s)
 """
 jatak = (param_name, param_gender, param_date, param_time, param_place,param_contact)
+cursor.execute(insert_query, jatak)
+conn.commit()
+print("New jatak inserted successfully!")
 
+
+# delete data
+delete_name = input("Enter the name of the record to delete: ")
+delete_query = f"""
+    DELETE FROM Birthdetails WHERE name = '{delete_name}'
+"""
 
 
 
@@ -40,9 +49,9 @@ print("\nStudent Records:")
 rows = cursor.fetchall()
 if rows:
     for row in rows:
-            print(row)
+        print(row)
 else:
-        print("No records found.")
+    print("No records found.")
 
 # Close connection
 cursor.close()
