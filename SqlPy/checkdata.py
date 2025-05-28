@@ -9,13 +9,13 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
+# 1️⃣ CREATE TABLE (if not exists)
 
+
+
+# fetch data based on user input
 attribute = input("Enter the attribute to find: ")
 value = input("Enter the value to find: ")
-
-# Validate attribute to prevent SQL injection (only allow specific columns)
-
-   
 
 query1 = f"SELECT * FROM Birthdetails WHERE {attribute}"
 query2 = f"= '{value}'"
