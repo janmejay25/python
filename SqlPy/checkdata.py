@@ -9,7 +9,21 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
-# 1️⃣ CREATE TABLE (if not exists)
+
+# 2️⃣ INSERT DATA (Using %s format)
+param_name = input("Enter name: ")
+param_gender = input("enter Gender (M/F): ")
+param_date = input("Enter birthdate (YYYY-MM-DD): ")
+param_time = input("Enter birthtime (HH:MM): ")
+param_place = input("Enter birthplace: ")
+param_contact = input("Enter contact number: ")
+
+insert_query = """
+    INSERT INTO Birthdetails (name, gender, birthdate, birthtime, birthplace, contact_no)
+    VALUES (%s, %s, %s, %s, %s, %s)
+"""
+jatak = (param_name, param_gender, param_date, param_time, param_place,param_contact)
+
 
 
 
