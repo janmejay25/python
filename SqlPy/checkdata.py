@@ -77,6 +77,9 @@ while True:
         break
     else:
         print("Invalid choice, please try again.")
+
+
+        
 # Close connection
 cursor.close()
 conn.close()
