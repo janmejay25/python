@@ -9,10 +9,16 @@ conn = mysql.connector.connect(
 )
 
 cursor = conn.cursor()
+attribute=input("enter the attribute to find: ")
+value=input("enter the value to find: ")
 
-
+query = """
+    SELECT * FROM Birthdetails WHERE"""
+attribute
+"""="""
+value
 # 3️⃣ READ DATA (Retrieve)
-cursor.execute("SELECT * FROM Birthdetails Where gender = 'M'")
+cursor.execute(query)
 print("\nStudent Records:")
 for row in cursor.fetchall():
     print(row)
