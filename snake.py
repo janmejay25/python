@@ -121,6 +121,7 @@ def game_loop():
             food_y = round(random.randrange(0, height - snake_block) / 10.0) * 10.0
             length_of_snake += 1
 
+
         clock.tick(snake_speed)
 
     pygame.quit()
