@@ -26,6 +26,7 @@ def word_with_z(s):
     return [word for word in words if 'z' in word]
 
 # Example Usage
+
 print(is_valid_string("Hello123"))  # True
 print(match_a_b("ab"))  # True
 print(find_underscore_sequences("hello_world test_case good_day"))  # ['hello_world', 'test_case']
