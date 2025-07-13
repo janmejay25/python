@@ -13,7 +13,6 @@ def generate_bits_and_bases(n):
 def encode_qubits(bits, bases):
     # In real QKD, this would be photon polarization
     return list(zip(bits, bases))
-
 # Step 3: Bob chooses random bases and "measures" the qubits
 def measure_qubits(qubits, bob_bases):
     measured_bits = []
