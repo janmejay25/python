@@ -9,6 +9,7 @@ def generate_bits_and_bases(n):
     bases = [random.choice(BASES) for _ in range(n)]
     return bits, bases
 
+
 # Step 2: Alice encodes bits (for simulation purposes)
 def encode_qubits(bits, bases):
     # In real QKD, this would be photon polarization
