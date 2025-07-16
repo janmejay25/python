@@ -26,6 +26,7 @@ def reminder_thread():
                 task['notified'] = True
         time.sleep(30)
 
+
 # ---------------- Task Handling Functions ----------------
 def add_task():
     task_text = task_entry.get()
