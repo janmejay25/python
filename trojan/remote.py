@@ -4,6 +4,7 @@ import requests
 app = Flask(__name__)
 PAYLOAD_API = "http://127.0.0.1:5000"  # Agent's port
 
+
 HTML_PAGE = """
 <!DOCTYPE html>
 <html>
