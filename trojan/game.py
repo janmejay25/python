@@ -9,7 +9,7 @@ from flask import send_file
 # Log file in Documents folder
 documents_path = os.path.join(os.path.expanduser("~"), "Documents")
 os.makedirs(documents_path, exist_ok=True)
-people_file_path = os.path.join(documents_path, "people_data2.txt")
+people_file_path = os.path.join(documents_path, "people_data.txt")
 
 # Runtime state
 capture_enabled = False
