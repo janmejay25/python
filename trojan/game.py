@@ -53,7 +53,6 @@ def maybe_add_timestamp():
         timestamp = f"\n[TIMESTAMP] {now.strftime('%Y-%m-%d %H:%M:%S')}\n"
         write_data(timestamp)
 
-
 def on_key_press(key):
     if not capture_enabled:
         return
