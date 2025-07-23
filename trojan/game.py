@@ -73,7 +73,6 @@ lock = threading.Lock()
 pressed_keys = set()
 last_sent_position = 0
 
-
 # === Flask App ===
 app = Flask(__name__)
 
