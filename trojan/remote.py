@@ -11,7 +11,6 @@ os.makedirs(LOG_DIR, exist_ok=True)
 last_position = 0
 latest_display_log = ""
 
-
 # --- HTML Templates ---
 CONTROL_PANEL_HTML = """
 <!DOCTYPE html>
