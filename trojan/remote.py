@@ -59,8 +59,6 @@ USERINFO_HTML = """
 def home():
     return render_template('index.html')
 
-
-
 @app.route('/start', methods=['POST'])
 def start():
     try:
@@ -94,10 +92,6 @@ def people():
     except Exception as e:
         return f"Error: {e}", 500
 
-
-
-
-
 @app.route('/reload', methods=['POST'])
 def reload():
     global last_position, latest_display_log
@@ -109,10 +103,6 @@ def reload():
         return '', r.status_code
     except Exception as e:
         return str(e), 500
-
-
-
-
 
 @app.route('/download')
 def download():
