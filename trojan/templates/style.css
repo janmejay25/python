@@ -1,0 +1,294 @@
+ body {
+     font-family: "Segoe UI", sans-serif;
+     background-color: #f9f9f9;
+     margin: 0;
+     padding: 0;
+     color: #000000;
+ }
+
+ .navbar {
+     background-color: #005f73;
+     padding: 20px;
+     transition: background-color 0.3s ease;
+     display: flex;
+     /* align-items: baseline; */
+     justify-content: space-between;
+ }
+
+ .navbar h1 {
+     margin: 0 0 10px;
+     color: white;
+     font-size: 24px;
+ }
+
+ .button-group {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 10px;
+ }
+
+ .navbtn {
+     display: flex;
+     /* border:2px solid red; */
+
+
+ }
+
+ .toggle-container {
+     display: flex;
+     justify-content: space-between;
+     flex: 1;
+ }
+
+ .links {
+     display: flex;
+     gap: 20px;
+     color: white;
+     flex-direction: row;
+     align-items: end;
+     margin-right: 10px;
+
+
+     transition: color 0.3s ease;
+ }
+
+ .links h3 a {
+     text-decoration: none;
+     color: white;
+     font-size: 18px;
+ }
+
+ .links h3 {
+     margin: 0;
+
+ }
+
+ .links h3:hover {
+     text-decoration: underline;
+
+ }
+
+ .container {
+     padding: 30px;
+ }
+
+ h2 {
+     margin-top: 0;
+ }
+
+ .log-box {
+     position: relative;
+     background-color: #fff;
+     border: 1px solid #ccc;
+     padding: 15px;
+     height: 60vh;
+     overflow-y: auto;
+     border-radius: 5px;
+     white-space: pre-wrap;
+     font-family: monospace;
+ }
+
+ .log-box::after {
+     content: url('key.png');
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     scale: 3.8;
+     transform: translate(-10%, -10%);
+     opacity: 0.2;
+ }
+
+ .log-actions {
+     position: absolute;
+     top: 8px;
+     right: 10px;
+     display: flex;
+     gap: 8px;
+ }
+
+ .log-actions button {
+     background-color: #eee;
+     color: #333;
+     border: 1px solid #ccc;
+     padding: 4px 10px;
+     font-size: 12px;
+     cursor: pointer;
+     border-radius: 3px;
+ }
+
+ .log-actions button:hover {
+     background-color: #ddd;
+ }
+
+ .toggle-switch {
+     position: relative;
+     display: inline-block;
+     width: 100px;
+     height: 40px;
+     background-color: #ccc;
+     border-radius: 10px;
+     transition: background-color 0.3s ease;
+     cursor: pointer;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     border: 2px solid #000000;
+     padding: 4px;
+ }
+
+ .toggle-switch input {
+     opacity: 0;
+     width: 0;
+     height: 0;
+ }
+
+ .slider-square {
+     position: absolute;
+     height: 36px;
+     width: 48px;
+     left: 2px;
+     top: 2px;
+     background-color: white;
+     color: black;
+     border-radius: 10px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     transition: all 0.3s ease;
+     user-select: none;
+     border: 2px solid #000;
+     padding: 2px;
+     font-size: small;
+ }
+
+ .toggle-switch input:checked+.slider-square {
+     left: 50px;
+ }
+
+ #people-output {
+     font-family: monospace;
+     white-space: pre-wrap;
+     word-break: break-all;
+     width: auto;
+     padding: 10px;
+     background-color: #f0f0f0;
+     border: 1px solid #ccc;
+     border-radius: 5px;
+     overflow-x: auto;
+     max-height: 60vh;
+     margin-top: 10px;
+     font-size: 14px;
+     color: #333;
+ }
+
+ .system-info {
+     margin-top: 20px;
+     padding: 10px;
+     background-color: #f0f0f0;
+     border-radius: 5px;
+ }
+
+ .system-info table {
+     width: 100%;
+     border-collapse: collapse;
+ }
+
+ .system-info th,
+ .system-info td {
+     padding: 10px;
+     border: 1px solid #ccc;
+     text-align: left;
+ }
+
+ .system-info th {
+     background-color: #e0f7fa;
+     color: #005f73;
+ }
+
+ .system-info td {
+     background-color: #f9f9f9;
+     color: #333;
+ }
+
+ .system-info tr:nth-child(even) {
+     background-color: #f1f1f1;
+ }
+
+ .system-info tr:hover {
+     background-color: #e0f7fa;
+ }
+
+ #sysbtn {
+     background-color: #0a9396;
+     color: white;
+     border: none;
+     padding: 10px 16px;
+     font-size: 14px;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: background-color 0.2s;
+ }
+
+ #sysbtn:hover {
+     background-color: #007f89;
+ }
+
+ .syscont {
+     display: flex;
+     justify-content: space-between;
+     margin-top: 20px;
+ }
+
+ .keycont {
+     display: flex;
+     justify-content: space-between;
+     align-items: baseline;
+     margin-bottom: 20px;
+ }
+
+ .keybtn {
+     display: flex;
+     gap: 10px;
+ }
+
+ #inttext {
+
+     margin-top: 5px;
+
+ }
+
+ .keybtn button {
+     background-color: #0a9396;
+     color: white;
+     border: none;
+     padding: 10px 16px;
+     font-size: 14px;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: background-color 0.2s;
+ }
+
+ .keybtn button:hover {
+     background-color: #007f89;
+ }
+
+ .keycont select {
+     padding: 5px;
+     border-radius: 4px;
+     border: 1px solid #ccc;
+     font-size: 14px;
+ }
+
+ .keycont select:focus {
+     border-color: #0a9396;
+     outline: none;
+ }
+
+ /* Hover effects for nav text */
+ .keycont:hover~.navbar .links h3:first-child,
+ .log-box:hover~.navbar .links h3:first-child {
+     color: yellow;
+ }
+
+ .syscont:hover~.navbar .links h3:last-child,
+ .system-info:hover~.navbar .links h3:last-child {
+     color: yellow;
+ }
