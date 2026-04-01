@@ -1,7 +1,7 @@
 from datetime import datetime
 
 current_yr = datetime.now().year
-age = int(input("enter your age"))
+age = int(input("enter your real age"))
 if age >18 :
     print("you can vote ")
 else :
